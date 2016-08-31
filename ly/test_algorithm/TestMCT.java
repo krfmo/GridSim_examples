@@ -31,10 +31,10 @@ public class TestMCT extends GridSim{
 	private GridletList list_;//任务集合
 	private GridletList receiveList_;//从资源传回的任务列表，此时任务状态已改
 
-	/*private double[] glLengths={5690.0, 10190, 949.8, 481.7, 226.4, 827.1, 897.8,
+	private double[] glLengths={5690.0, 10190, 949.8, 481.7, 226.4, 827.1, 897.8,
 			734.7, 319.6, 10606};//随机生成的任务长度，总数与常量GRIDLET_NUM对应
-*/	private double[] glLengths={569.0, 1019.0, 949.8, 481.7, 226.4, 827.1, 897.8,
-			734.7, 319.6, 1060.6};//随机生成的任务长度，总数与常量GRIDLET_NUM对应
+	/*private double[] glLengths={569.0, 1019.0, 949.8, 481.7, 226.4, 827.1, 897.8,
+			734.7, 319.6, 1060.6};*///随机生成的任务长度，总数与常量GRIDLET_NUM对应
 
 	public TestMCT(String name, double baudRate, int totalResource) throws Exception {
 		super(name, baudRate);
