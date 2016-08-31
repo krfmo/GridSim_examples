@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /*
- * 仿真实验4
+ * 仿真实验5
  * 加入各种常数，模拟不同实验条件下各个算法的调度结果
  * 实验条件：
  * 用户数	3
