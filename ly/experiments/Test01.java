@@ -54,7 +54,14 @@ public class Test01 extends GridSim{
 
 	//任务长度数组，任务为服从高斯分布的int值，任务数为常量GRIDLET_NUM
 	//这里只能保证运行一次各个用户都有相同的任务集合，但是不同次运行的任务集合是不同的，以后有必要可以把一组任务长度数据保存，然后每次用同一组数据
-	private int[] glLengths=createGL();
+	//private int[] glLengths=createGL();
+	private int[] glLengths={975, 9892, 9924, 1011, 979, 988, 1009, 993, 1010, 972, 9991, 980,
+			1015, 1022, 1052, 1014, 1013, 1000, 1014, 9979, 1019, 1001, 1006, 1068, 960, 996,
+			994, 1005, 1027, 957, 994, 970, 1008, 1024, 1013, 928, 1024, 954, 1021, 972, 9980,
+			1008, 1032, 946, 1073, 985, 983, 1031, 985, 1033, 990, 9977, 1009, 1017, 990, 1022,
+			1022, 972, 1021, 935, 1036, 1017, 10005, 999, 10080, 994, 1025, 977, 929, 994, 936,
+			978, 1003, 964, 1022, 1000, 1075, 9849, 998, 932, 979, 1032, 9975, 1010, 1014, 995,
+			971, 987, 1000, 1051, 989, 919, 1019, 1000, 1009, 1002, 935, 976, 1002, 980};
 
 	public Test01(String name, double baudRate, int totalResource) throws Exception {
 		super(name, baudRate);
@@ -206,9 +213,9 @@ public class Test01 extends GridSim{
 			}*/
 
 			//单独测试结果：MCT>OBL>MET，MCT与OBL结合结果更优
-			//result=MCT(i, ready, etc);
+			result=MCT(i, ready, etc);
 			//result=MET(i, ready, etc);
-			result=OBL(i, ready, resChars, etc);
+			//result=OBL(i, ready, resChars, etc);
 
 			//获取调度算法结果，结果数组中第一个元素为目标机器下标，第二个元素为目标机器完成时间，第三个元素为理论上处理任务的最短时长
 			sch=(int) result[0];

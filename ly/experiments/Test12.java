@@ -16,17 +16,17 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /*
- * 仿真实验2
+ * 仿真实验12
  * 加入各种常数，模拟不同实验条件下各个算法的调度结果
  * 实验条件：
  * 用户数	3
  * 任务数	100
- * 任务长度	10000
- * 长短任务比例	0.6
+ * 任务长度	10000(均匀分布)
+ * 长短任务比例	1(全部是短任务)(可以从结果知道，长任务比例越大，MCT结果越好，长任务比例越小，OBL结果越好)
  * 资源数	3
  * 资源处理能力差异	30，40，50
  */
-public class Test02 extends GridSim{
+public class Test12 extends GridSim{
 
 	//各种常量
 	//用户数（更改此值需保证main方法中创建的用户数与此数值一致）
@@ -36,8 +36,8 @@ public class Test02 extends GridSim{
 	//生成长度服从高斯分布的任务时用到的均值和方差的参数（任务长度）
 	public static final int GAUSSIAN_CONST_1=1000;//短任务
 	public static final int GAUSSIAN_CONST_2=10000;//长任务
-	//长短任务比例，0.6的短任务，0.4的长任务吧
-	public static final float PER_CENTAGE=0.6f;
+	//长短任务比例，0的短任务，1的长任务吧
+	public static final float PER_CENTAGE=1f;
 	//资源总数（更改此值需保证main方法中创建的用户数与此数值一致）
 	public static final int RESOURCE_NUM=3;
 	//资源处理能力（有多少个资源就应该有多少mips_rating值）
@@ -55,15 +55,22 @@ public class Test02 extends GridSim{
 	//任务长度数组，任务为服从高斯分布的int值，任务数为常量GRIDLET_NUM
 	//这里只能保证运行一次各个用户都有相同的任务集合，但是不同次运行的任务集合是不同的，以后有必要可以把一组任务长度数据保存，然后每次用同一组数据
 	//private int[] glLengths=createGL();
-	private int[] glLengths={1065, 10065, 958, 1011, 1038, 9863, 9966, 1010, 9952, 1006, 985, 1013,
-			1005, 997, 10053, 1005, 994, 963, 977, 1023, 1028, 10064, 966, 9939, 9923, 10063, 995,
-			10148, 10087, 10093, 988, 10022, 9941, 949, 10042, 10106, 1025, 1063, 10025, 10011, 1015,
-			1022, 10009, 1017, 9953, 990, 10012, 1013, 938, 10010, 999, 9902, 10081, 999, 1021, 1040,
-			979, 10096, 9830, 1002, 9968, 1025, 981, 9898, 10007, 994, 1091, 987, 970, 1022, 10171,
-			1010, 1038, 10008, 10013, 1028, 10041, 1031, 9945, 10144, 1011, 1012, 1036, 10073, 995,
-			1014, 9948, 987, 996, 957, 977, 927, 1009, 977, 9880, 1008, 1024, 9968, 1017, 9924};
+	/*private int[] glLengths={1582, 1586, 1153, 1176, 1700, 1338, 1685, 1304, 1011, 1291, 1964, 1912,
+			1665, 1054, 1818, 1699, 1610, 1783, 1398, 1627, 1857, 1947, 1818, 1006, 1375, 1848, 1145,
+			1083, 1826, 1202, 1116, 1540, 1845, 1581, 1764, 1064, 1698, 1085, 1846, 1171, 1273, 1584,
+			1799, 1620, 1205, 1995, 1100, 1264, 1552, 1076, 1976, 1346, 1825, 1706, 1719, 1289, 1249,
+			1949, 1398, 1857, 1865, 1991, 1104, 1285, 1242, 1360, 1498, 1999, 1550, 1844, 1474, 1492,
+			1682, 1458, 1065, 1720, 1902, 1115, 1394, 1574, 1633, 1561, 1223, 1044, 1281, 1962, 1623,
+			1699, 1312, 1093, 1996, 1755, 1201, 1482, 1956, 1248, 1058, 1027, 1861, 1009};*/
+	private int[] glLengths={1167, 1464, 1507, 1901, 1097, 1019, 1043, 1835, 1730, 1103, 1842, 1657,
+			1903, 1995, 1895, 1076, 1212, 1357, 1609, 1669, 1078, 1155, 1669, 1008, 1602, 1006, 1706,
+			1973, 1573, 1922, 1254, 1334, 1086, 1945, 1707, 1363, 1451, 1823, 1689, 1389, 1435, 1244,
+			1140, 1200, 1458, 1587, 1136, 1322, 1694, 1259, 1246, 1230, 1387, 1946, 1706, 1939, 1171,
+			1378, 1035, 1399, 1062, 1354, 1254, 1520, 1409, 1273, 1304, 1361, 1307, 1945, 1494, 1682,
+			1969, 1466, 1060, 1672, 1030, 1083, 1350, 1080, 1516, 1331, 1541, 1075, 1217, 1537, 1576,
+			1416, 1171, 1873, 1890, 1159, 1158, 1114, 1092, 1290, 1031, 1675, 1141, 1301};
 
-	public Test02(String name, double baudRate, int totalResource) throws Exception {
+	public Test12(String name, double baudRate, int totalResource) throws Exception {
 		super(name, baudRate);
 		this.name_=name;
 		this.totalResource_=totalResource;
@@ -94,10 +101,16 @@ public class Test02 extends GridSim{
 		
 		int[] glls=new int[GRIDLET_NUM];
 		for(int i=0; i<shortNum; i++){
-			glls[index[i]]=(int) (Math.sqrt(GAUSSIAN_CONST_1)*random.nextGaussian()+GAUSSIAN_CONST_1);
+			//glls[index[i]]=(int) (Math.sqrt(GAUSSIAN_CONST_1)*random.nextGaussian()+GAUSSIAN_CONST_1);
+			//glls[index[i]]=random.nextInt(GAUSSIAN_CONST_1)+GAUSSIAN_CONST_1;
+			//生成一系列伪随机数，在100~199之间均匀分布
+			glls[index[i]]=(int) (Math.random()*GAUSSIAN_CONST_1+GAUSSIAN_CONST_1);
 		}
 		for(int i=0; i<longNum; i++){
-			glls[index[i+shortNum]]=(int) (Math.sqrt(GAUSSIAN_CONST_2)*random.nextGaussian()+GAUSSIAN_CONST_2);
+			//glls[index[i+shortNum]]=(int) (Math.sqrt(GAUSSIAN_CONST_2)*random.nextGaussian()+GAUSSIAN_CONST_2);
+			//glls[index[i+shortNum]]=random.nextInt(GAUSSIAN_CONST_2)+GAUSSIAN_CONST_2;
+			//生成一系列伪随机数，在10000~19999之间均匀分布
+			glls[index[i+shortNum]]=(int) (Math.random()*GAUSSIAN_CONST_2+GAUSSIAN_CONST_2);
 		}
 		
 		System.out.println(Arrays.toString(glls));
@@ -213,9 +226,9 @@ public class Test02 extends GridSim{
 			}*/
 
 			//单独测试结果：MCT>OBL>MET，MCT与OBL结合结果更优
-			//result=MCT(i, ready, etc);
+			result=MCT(i, ready, etc);
 			//result=MET(i, ready, etc);
-			result=OBL(i, ready, resChars, etc);
+			//result=OBL(i, ready, resChars, etc);
 
 			//获取调度算法结果，结果数组中第一个元素为目标机器下标，第二个元素为目标机器完成时间，第三个元素为理论上处理任务的最短时长
 			sch=(int) result[0];
@@ -416,9 +429,9 @@ public class Test02 extends GridSim{
 			GridResource resource2=createGridResource("Resource2", MIPS_RATING_3, "Sun Ultra", "Solaris");
 
 			int total_resource=RESOURCE_NUM;//上面创建了3个资源，所以这里是3
-			Test02 user0=new Test02("User_0", 560.00, total_resource);
-			Test02 user1=new Test02("User_1", 560.00, total_resource);
-			Test02 user2=new Test02("User_2", 560.00, total_resource);
+			Test12 user0=new Test12("User_0", 560.00, total_resource);
+			Test12 user1=new Test12("User_1", 560.00, total_resource);
+			Test12 user2=new Test12("User_2", 560.00, total_resource);
 
 			GridSim.startGridSimulation();
 
