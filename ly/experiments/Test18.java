@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /*
- * 仿真实验2
+ * 仿真实验18
  * 加入各种常数，模拟不同实验条件下各个算法的调度结果
  * 实验条件：
  * 用户数	3
@@ -24,9 +24,9 @@ import java.util.Random;
  * 任务长度	10000（高斯分布）
  * 长短任务比例	0.6
  * 资源数	3
- * 资源处理能力差异	30，40，50
+ * 资源处理能力差异	37，39，41
  */
-public class Test02 extends GridSim{
+public class Test18 extends GridSim{
 
 	//各种常量
 	//用户数（更改此值需保证main方法中创建的用户数与此数值一致）
@@ -41,9 +41,9 @@ public class Test02 extends GridSim{
 	//资源总数（更改此值需保证main方法中创建的用户数与此数值一致）
 	public static final int RESOURCE_NUM=3;
 	//资源处理能力（有多少个资源就应该有多少mips_rating值）
-	public static final int MIPS_RATING_1=30;
-	public static final int MIPS_RATING_2=40;
-	public static final int MIPS_RATING_3=50;
+	public static final int MIPS_RATING_1=37;
+	public static final int MIPS_RATING_2=39;
+	public static final int MIPS_RATING_3=41;
 
 	//成员变量
 	private Integer ID_;//用户ID
@@ -63,7 +63,7 @@ public class Test02 extends GridSim{
 			1010, 1038, 10008, 10013, 1028, 10041, 1031, 9945, 10144, 1011, 1012, 1036, 10073, 995,
 			1014, 9948, 987, 996, 957, 977, 927, 1009, 977, 9880, 1008, 1024, 9968, 1017, 9924};
 
-	public Test02(String name, double baudRate, int totalResource) throws Exception {
+	public Test18(String name, double baudRate, int totalResource) throws Exception {
 		super(name, baudRate);
 		this.name_=name;
 		this.totalResource_=totalResource;
@@ -416,9 +416,9 @@ public class Test02 extends GridSim{
 			GridResource resource2=createGridResource("Resource2", MIPS_RATING_3, "Sun Ultra", "Solaris");
 
 			int total_resource=RESOURCE_NUM;//上面创建了3个资源，所以这里是3
-			Test02 user0=new Test02("User_0", 560.00, total_resource);
-			Test02 user1=new Test02("User_1", 560.00, total_resource);
-			Test02 user2=new Test02("User_2", 560.00, total_resource);
+			Test18 user0=new Test18("User_0", 560.00, total_resource);
+			Test18 user1=new Test18("User_1", 560.00, total_resource);
+			Test18 user2=new Test18("User_2", 560.00, total_resource);
 
 			GridSim.startGridSimulation();
 

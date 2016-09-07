@@ -21,7 +21,7 @@ import java.util.Random;
  * 实验条件：
  * 用户数	3
  * 任务数	100
- * 任务长度	10000
+ * 任务长度	10000（高斯分布）
  * 长短任务比例	0.3
  * 资源数	3
  * 资源处理能力差异	30，40，50
@@ -213,9 +213,9 @@ public class Test03 extends GridSim{
 			}*/
 
 			//单独测试结果：MCT>OBL>MET，MCT与OBL结合结果更优
-			result=MCT(i, ready, etc);
+			//result=MCT(i, ready, etc);
 			//result=MET(i, ready, etc);
-			//result=OBL(i, ready, resChars, etc);
+			result=OBL(i, ready, resChars, etc);
 
 			//获取调度算法结果，结果数组中第一个元素为目标机器下标，第二个元素为目标机器完成时间，第三个元素为理论上处理任务的最短时长
 			sch=(int) result[0];

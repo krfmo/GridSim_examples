@@ -16,17 +16,17 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /*
- * 仿真实验2
+ * 仿真实验20
  * 加入各种常数，模拟不同实验条件下各个算法的调度结果
  * 实验条件：
  * 用户数	3
  * 任务数	100
- * 任务长度	10000（高斯分布）
- * 长短任务比例	0.6
+ * 任务长度	10000(高斯分布)
+ * 长短任务比例	0(全部是长任务)(可以从结果知道，长任务比例越大，MCT结果越好，长任务比例越小，OBL结果越好)
  * 资源数	3
- * 资源处理能力差异	30，40，50
+ * 资源处理能力差异	37，39，41
  */
-public class Test02 extends GridSim{
+public class Test20 extends GridSim{
 
 	//各种常量
 	//用户数（更改此值需保证main方法中创建的用户数与此数值一致）
@@ -36,14 +36,14 @@ public class Test02 extends GridSim{
 	//生成长度服从高斯分布的任务时用到的均值和方差的参数（任务长度）
 	public static final int GAUSSIAN_CONST_1=1000;//短任务
 	public static final int GAUSSIAN_CONST_2=10000;//长任务
-	//长短任务比例，0.6的短任务，0.4的长任务吧
-	public static final float PER_CENTAGE=0.6f;
+	//长短任务比例，0的短任务，1的长任务吧
+	public static final float PER_CENTAGE=0f;
 	//资源总数（更改此值需保证main方法中创建的用户数与此数值一致）
 	public static final int RESOURCE_NUM=3;
 	//资源处理能力（有多少个资源就应该有多少mips_rating值）
-	public static final int MIPS_RATING_1=30;
-	public static final int MIPS_RATING_2=40;
-	public static final int MIPS_RATING_3=50;
+	public static final int MIPS_RATING_1=37;
+	public static final int MIPS_RATING_2=39;
+	public static final int MIPS_RATING_3=41;
 
 	//成员变量
 	private Integer ID_;//用户ID
@@ -55,15 +55,16 @@ public class Test02 extends GridSim{
 	//任务长度数组，任务为服从高斯分布的int值，任务数为常量GRIDLET_NUM
 	//这里只能保证运行一次各个用户都有相同的任务集合，但是不同次运行的任务集合是不同的，以后有必要可以把一组任务长度数据保存，然后每次用同一组数据
 	//private int[] glLengths=createGL();
-	private int[] glLengths={1065, 10065, 958, 1011, 1038, 9863, 9966, 1010, 9952, 1006, 985, 1013,
-			1005, 997, 10053, 1005, 994, 963, 977, 1023, 1028, 10064, 966, 9939, 9923, 10063, 995,
-			10148, 10087, 10093, 988, 10022, 9941, 949, 10042, 10106, 1025, 1063, 10025, 10011, 1015,
-			1022, 10009, 1017, 9953, 990, 10012, 1013, 938, 10010, 999, 9902, 10081, 999, 1021, 1040,
-			979, 10096, 9830, 1002, 9968, 1025, 981, 9898, 10007, 994, 1091, 987, 970, 1022, 10171,
-			1010, 1038, 10008, 10013, 1028, 10041, 1031, 9945, 10144, 1011, 1012, 1036, 10073, 995,
-			1014, 9948, 987, 996, 957, 977, 927, 1009, 977, 9880, 1008, 1024, 9968, 1017, 9924};
+	private int[] glLengths={9971, 10035, 10109, 9997, 10021, 9950, 10017, 10029, 10111, 9908, 10063,
+			10008, 9929, 9983, 9888, 9955, 10224, 10206, 10144, 9916, 9900, 9989, 10066, 10107, 9932,
+			9958, 10190, 10062, 9940, 9994, 9877, 9921, 10187, 9939, 10036, 9989, 9758, 9888, 10051,
+			9913, 9960, 9755, 9982, 10063, 10130, 9953, 9979, 10105, 9976, 9874, 9911, 10053, 10129,
+			9781, 9952, 9910, 9972, 10034, 9959, 10018, 10129, 10114, 9945, 10008, 10038, 9967, 9930,
+			9944, 9910, 10139, 10113, 10071, 9958, 10025, 10131, 10083, 9837, 10148, 9932, 9913, 10088,
+			9820, 9888, 10041, 9984, 9960, 10109, 9909, 9878, 9918, 10076, 9891, 9952, 9918, 10139, 10032,
+			10041, 10139, 9917, 10119};
 
-	public Test02(String name, double baudRate, int totalResource) throws Exception {
+	public Test20(String name, double baudRate, int totalResource) throws Exception {
 		super(name, baudRate);
 		this.name_=name;
 		this.totalResource_=totalResource;
@@ -416,9 +417,9 @@ public class Test02 extends GridSim{
 			GridResource resource2=createGridResource("Resource2", MIPS_RATING_3, "Sun Ultra", "Solaris");
 
 			int total_resource=RESOURCE_NUM;//上面创建了3个资源，所以这里是3
-			Test02 user0=new Test02("User_0", 560.00, total_resource);
-			Test02 user1=new Test02("User_1", 560.00, total_resource);
-			Test02 user2=new Test02("User_2", 560.00, total_resource);
+			Test20 user0=new Test20("User_0", 560.00, total_resource);
+			Test20 user1=new Test20("User_1", 560.00, total_resource);
+			Test20 user2=new Test20("User_2", 560.00, total_resource);
 
 			GridSim.startGridSimulation();
 
