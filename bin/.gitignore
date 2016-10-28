@@ -3,8 +3,11 @@
 /WorkloadTrace/
 /auction/
 /datagrid/
+/experiments/
+/experiments_2/
 /fta/
 /gridsim/
+/my_algorithm/
 /network/
 /parallel/
 /readme.txt
@@ -21,6 +24,4 @@
 /test09/
 /test10/
 /test_algorithm/
-/experiments/
-/experiments_2/
-/my_algorithm/
+/test_machine/
